@@ -3,14 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Cyber Neon Snake</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    
     <link rel="stylesheet" href="css/style.css" />
     <script defer src="js/script.js"></script>
   </head>
   <body>
     <div class="body">
-      <div id="board"></div>
+      <div class="game-wrapper">
+        <!-- Sleek Cyber HUD Header -->
+        <header class="game-header">
+          <div class="brand">
+            <i class="fa-solid fa-staff-snake brand-icon"></i>
+            <h1 class="game-title">CYBER<span>SNAKE</span></h1>
+          </div>
+          
+          <div class="hud-scores">
+            <div id="scoreBox" class="hud-pill score-pill">
+              <i class="fa-solid fa-bolt icon-score"></i>
+              <span>Score: 0</span>
+            </div>
+            <div id="hiscoreBox" class="hud-pill hiscore-pill">
+              <i class="fa-solid fa-trophy icon-trophy"></i>
+              <span>HiScore: 0</span>
+            </div>
+          </div>
+        </header>
+
+        <!-- Big Cyber Board -->
+        <div id="board"></div>
+      </div>
     </div>
   </body>
 </html>

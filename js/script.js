@@ -6,16 +6,30 @@ let snakeArray = [
 ];
 let previousTime = 0;
 let speed = 10;
+let score = 0;
 
 // constant============================================
 const a = 2;
 const b = 18;
 // dom elements
 const board = document.getElementById("board");
+const scoreBox = document.getElementById("scoreBox");
+const hiscoreBox = document.getElementById("hiscoreBox");
 // sounds
-const moveSound = new Audio("../assets/sounds/move.mp3");
-const eatSound = new Audio("../assets/sounds/food.mp3");
-const gameOver = new Audio("../assets/sounds/gameover.mp3");
+const moveSound = new Audio("assets/sounds/move.mp3");
+const eatSound = new Audio("assets/sounds/food.mp3");
+const gameOver = new Audio("assets/sounds/gameover.mp3");
+
+// HiScore loading
+let hiscore = localStorage.getItem("hiscore");
+let hiscoreval = 0;
+if (hiscore === null) {
+  hiscoreval = 0;
+  localStorage.setItem("hiscore", JSON.stringify(hiscoreval));
+} else {
+  hiscoreval = JSON.parse(hiscore);
+  if (hiscoreBox) hiscoreBox.innerHTML = `<i class="fa-solid fa-trophy icon-trophy"></i> <span>HiScore: ${hiscoreval}</span>`;
+}
 
 // game functions========================================
 // random num generator
@@ -56,12 +70,21 @@ const gameEngine = () => {
     food = { x: randomCord(), y: randomCord() };
     snakeArray = [{ x: 10, y: 10 }];
     direction = { x: 0, y: 0 };
+    score = 0;
+    if (scoreBox) scoreBox.innerHTML = `<i class="fa-solid fa-bolt icon-score"></i> <span>Score: ${score}</span>`;
   }
 
   // eatfood and add body elements
   if (snakeArray[0].x == food.x && snakeArray[0].y == food.y) {
     eatSound.currentTime = 0;
     eatSound.play();
+    score += 1;
+    if (score > hiscoreval) {
+      hiscoreval = score;
+      localStorage.setItem("hiscore", JSON.stringify(hiscoreval));
+      if (hiscoreBox) hiscoreBox.innerHTML = `<i class="fa-solid fa-trophy icon-trophy"></i> <span>HiScore: ${hiscoreval}</span>`;
+    }
+    if (scoreBox) scoreBox.innerHTML = `<i class="fa-solid fa-bolt icon-score"></i> <span>Score: ${score}</span>`;
 
     food = { x: randomCord(), y: randomCord() };
     snakeArray.push({
